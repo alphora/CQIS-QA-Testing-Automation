@@ -1,0 +1,1209 @@
+// Paste your conversation from Claude browser here
+// This file is for reference purposes
+
+Response
+Preview
+API
+🎯 FINAL Complete Structure - Production Ready
+You're absolutely right! Let's make $evaluate-measure a single reusable function that just takes measureId.
+
+📁 COMPLETE FINAL STRUCTURE
+
+Copy
+measure-test-karate/
+│
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── (empty - not needed)
+│   │
+│   └── test/
+│       ├── java/
+│       │   └── com/
+│       │       └── measure/
+│       │           └── test/
+│       │               ├── MeasureTestRunner.java           # Main runner
+│       │               ├── ProportionMeasuresTest.java      # Run proportion tests
+│       │               ├── RatioMeasuresTest.java           # Run ratio tests
+│       │               ├── ContinuousVariableTest.java      # Run CV tests
+│       │               └── CohortMeasuresTest.java          # Run cohort tests
+│       │
+│       └── resources/
+│           │
+│           ├── karate-config.js                             # Global config
+│           │
+│           ├── common-data/                                 # 📦 Shared test data
+│           │   │
+│           │   ├── library/
+│           │   │   ├── LibrarySimple.cql                   # CQL source
+│           │   │   └── LibrarySimple.json                  # Compiled ELM JSON
+│           │   │
+│           │   ├── patients/
+│           │   │   ├── patient1.json
+│           │   │   ├── patient2.json
+│           │   │   └── patients-bundle.json                # Bundle of both
+│           │   │
+│           │   ├── organizations/
+│           │   │   ├── organization1.json
+│           │   │   └── organizations-bundle.json
+│           │   │
+│           │   ├── practitioners/
+│           │   │   ├── practitioner1.json
+│           │   │   └── practitioners-bundle.json
+│           │   │
+│           │   └── encounters/
+│           │       ├── encounter1-patient1.json
+│           │       ├── encounter2-patient1.json
+│           │       ├── encounter3-patient2.json
+│           │       ├── encounter4-patient2.json
+│           │       └── encounters-bundle.json
+│           │
+│           ├── measures/                                    # 📊 All 20 measures
+│           │   ├── measure-01-proportion-date-basis.json
+│           │   ├── measure-02-proportion-boolean.json
+│           │   ├── measure-03-proportion-string.json
+│           │   ├── measure-04-proportion-resource.json
+│           │   ├── measure-05-ratio-boolean.json
+│           │   ├── measure-06-ratio-date.json
+│           │   ├── measure-07-ratio-string.json
+│           │   ├── measure-08-ratio-resource.json
+│           │   ├── measure-09-ratio-cv-date.json
+│           │   ├── measure-10-ratio-cv-boolean.json
+│           │   ├── measure-11-ratio-cv-string.json
+│           │   ├── measure-12-ratio-cv-resource.json
+│           │   ├── measure-13-cv-date.json
+│           │   ├── measure-14-cv-boolean.json
+│           │   ├── measure-15-cv-string.json
+│           │   ├── measure-16-cv-resource.json
+│           │   ├── measure-17-cohort-boolean.json
+│           │   ├── measure-18-cohort-boolean-no-start.json
+│           │   ├── measure-19-cohort-string.json
+│           │   └── measure-20-cohort-resource.json
+│           │
+│           ├── expected-results/                            # ✅ Expected MeasureReports
+│           │   ├── measure-01-expected.json                # Population report
+│           │   ├── measure-02-expected.json
+│           │   ├── measure-03-expected.json
+│           │   ├── measure-04-expected.json
+│           │   ├── measure-05-expected.json
+│           │   ├── measure-06-expected.json
+│           │   ├── measure-07-expected.json
+│           │   ├── measure-08-expected.json
+│           │   ├── measure-09-expected.json
+│           │   ├── measure-10-expected.json
+│           │   ├── measure-11-expected.json
+│           │   ├── measure-12-expected.json
+│           │   ├── measure-13-expected.json
+│           │   ├── measure-14-expected.json
+│           │   ├── measure-15-expected.json
+│           │   ├── measure-16-expected.json
+│           │   ├── measure-17-expected.json
+│           │   ├── measure-18-expected.json
+│           │   ├── measure-19-expected.json
+│           │   └── measure-20-expected.json
+│           │
+│           └── features/                                    # 🧪 Test features
+│               │
+│               ├── common/                                  # ⚙️ Core reusable features
+│               │   ├── evaluate-measure.feature           # 🔥 SINGLE evaluate function
+│               │   ├── compare-reports.feature            # Comparison logic
+│               │   └── test-data-loader.feature           # Data loading
+│               │
+│               ├── setup/                                   # 🚀 One-time setup
+│               │   └── load-test-data.feature             # Load library, measures, patients
+│               │
+│               ├── proportion-measures/                     # Tests 1-4
+│               │   ├── measure-01.feature
+│               │   ├── measure-02.feature
+│               │   ├── measure-03.feature
+│               │   └── measure-04.feature
+│               │
+│               ├── ratio-measures/                          # Tests 5-8
+│               │   ├── measure-05.feature
+│               │   ├── measure-06.feature
+│               │   ├── measure-07.feature
+│               │   └── measure-08.feature
+│               │
+│               ├── ratio-cv-measures/                       # Tests 9-12
+│               │   ├── measure-09.feature
+│               │   ├── measure-10.feature
+│               │   ├── measure-11.feature
+│               │   └── measure-12.feature
+│               │
+│               ├── cv-measures/                             # Tests 13-16
+│               │   ├── measure-13.feature
+│               │   ├── measure-14.feature
+│               │   ├── measure-15.feature
+│               │   └── measure-16.feature
+│               │
+│               └── cohort-measures/                         # Tests 17-20
+│                   ├── measure-17.feature
+│                   ├── measure-18.feature
+│                   ├── measure-19.feature
+│                   └── measure-20.feature
+│
+├── test-output/                                            # 💾 Generated during tests
+│   ├── generated-reports/                                 # Actual MeasureReports
+│   │   ├── measure-01-generated.json
+│   │   ├── measure-02-generated.json
+│   │   └── ... (18 more)
+│   │
+│   └── comparison-results/                                # Comparison details
+│       ├── measure-01-comparison.json
+│       ├── measure-02-comparison.json
+│       └── ... (18 more)
+│
+├── scripts/                                                # 🛠️ Utility scripts
+│   ├── generate-expected-reports.js                       # Generate expected results
+│   ├── create-test-bundles.js                            # Create data bundles
+│   └── validate-structure.js                             # Validate project structure
+│
+├── target/                                                 # Maven output (auto-generated)
+│   ├── karate-reports/                                    # HTML test reports
+│   ├── surefire-reports/                                  # JUnit XML reports
+│   └── karate.log                                         # Detailed logs
+│
+├── .gitignore
+├── pom.xml
+├── README.md
+└── package.json                                           # For utility scripts
+📄 COMPLETE FILE CONTENTS
+1. pom.xml
+xml
+
+Copy
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.measure.testing</groupId>
+    <artifactId>measure-test-karate</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    
+    <name>CQL Measure Testing Framework</name>
+    <description>Automated testing for 20 CQL measures using Karate</description>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>11</java.version>
+        <maven.compiler.version>3.11.0</maven.compiler.version>
+        <karate.version>1.4.1</karate.version>
+        <junit.version>5.10.0</junit.version>
+    </properties>
+    
+    <dependencies>
+        <!-- Karate Framework -->
+        <dependency>
+            <groupId>com.intuit.karate</groupId>
+            <artifactId>karate-junit5</artifactId>
+            <version>${karate.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <!-- JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>false</filtering>
+            </testResource>
+        </testResources>
+        
+        <plugins>
+            <!-- Maven Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            
+            <!-- Maven Surefire (Test Runner) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <systemProperties>
+                        <karate.env>${karate.env}</karate.env>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>
+2. karate-config.js (Global Configuration)
+javascript
+
+Copy
+function fn() {
+  
+  var env = karate.env || 'dev';
+  karate.log('═══════════════════════════════════════════════');
+  karate.log('Karate Environment:', env);
+  karate.log('═══════════════════════════════════════════════');
+  
+  var config = {
+    // FHIR Server Configuration
+    fhirServerUrl: 'http://localhost:8080/fhir',
+    
+    // Resource Paths
+    paths: {
+      commonData: 'classpath:common-data',
+      measures: 'classpath:measures',
+      expectedResults: 'classpath:expected-results'
+    },
+    
+    // Default Measure Evaluation Parameters
+    evaluationParams: {
+      periodStart: '2024-01-01',
+      periodEnd: '2024-12-31',
+      reportType: 'summary'  // Population report
+    },
+    
+    // Output Paths (for saving generated reports)
+    outputPaths: {
+      generatedReports: 'test-output/generated-reports',
+      comparisonResults: 'test-output/comparison-results'
+    },
+    
+    // Test Data
+    testPatients: ['patient1', 'patient2'],
+    
+    // Timeout Settings (milliseconds)
+    timeouts: {
+      default: 30000,       // 30 seconds
+      setup: 120000,        // 2 minutes
+      evaluation: 60000     // 1 minute
+    },
+    
+    // Comparison Configuration
+    ignoreFields: [
+      'id',
+      'meta',
+      'date',
+      'text',
+      'contained'
+    ],
+    
+    // Feature Flags
+    features: {
+      saveGeneratedReports: true,
+      saveComparisonResults: true,
+      detailedLogging: true,
+      parallelExecution: true
+    },
+    
+    // Measure List (for bulk operations)
+    measures: [
+      'measure-01', 'measure-02', 'measure-03', 'measure-04',
+      'measure-05', 'measure-06', 'measure-07', 'measure-08',
+      'measure-09', 'measure-10', 'measure-11', 'measure-12',
+      'measure-13', 'measure-14', 'measure-15', 'measure-16',
+      'measure-17', 'measure-18', 'measure-19', 'measure-20'
+    ]
+  };
+  
+  // Environment-specific overrides
+  if (env === 'dev') {
+    config.fhirServerUrl = 'http://localhost:8080/fhir';
+    config.features.detailedLogging = true;
+  } else if (env === 'test') {
+    config.fhirServerUrl = 'http://test-server:8080/fhir';
+    config.features.detailedLogging = false;
+  } else if (env === 'ci') {
+    config.fhirServerUrl = 'http://ci-server:8080/fhir';
+    config.features.detailedLogging = false;
+    config.features.parallelExecution = true;
+  }
+  
+  // Configure Karate HTTP client
+  karate.configure('connectTimeout', config.timeouts.default);
+  karate.configure('readTimeout', config.timeouts.default);
+  karate.configure('ssl', true);
+  karate.configure('logPrettyRequest', config.features.detailedLogging);
+  karate.configure('logPrettyResponse', config.features.detailedLogging);
+  
+  // Log configuration
+  karate.log('FHIR Server:', config.fhirServerUrl);
+  karate.log('Report Type:', config.evaluationParams.reportType);
+  karate.log('Test Patients:', config.testPatients);
+  karate.log('Save Reports:', config.features.saveGeneratedReports);
+  karate.log('═══════════════════════════════════════════════\n');
+  
+  return config;
+}
+3. Main Test Runner
+src/test/java/com/measure/test/MeasureTestRunner.java
+
+java
+
+Copy
+package com.measure.test;
+
+import com.intuit.karate.junit5.Karate;
+
+/**
+ * Main Test Runner - Executes all measure tests
+ */
+public class MeasureTestRunner {
+    
+    @Karate.Test
+    Karate runAllTests() {
+        return Karate.run("classpath:features")
+                .tags("~@ignore")
+                .parallel(5);
+    }
+}
+4. Category-Specific Test Runners
+src/test/java/com/measure/test/ProportionMeasuresTest.java
+
+java
+
+Copy
+package com.measure.test;
+
+import com.intuit.karate.junit5.Karate;
+
+/**
+ * Test Runner for Proportion Measures (1-4)
+ */
+public class ProportionMeasuresTest {
+    
+    @Karate.Test
+    Karate runProportionMeasures() {
+        return Karate.run("classpath:features/proportion-measures")
+                .parallel(2);
+    }
+}
+src/test/java/com/measure/test/RatioMeasuresTest.java
+
+java
+
+Copy
+package com.measure.test;
+
+import com.intuit.karate.junit5.Karate;
+
+/**
+ * Test Runner for Ratio Measures (5-8)
+ */
+public class RatioMeasuresTest {
+    
+    @Karate.Test
+    Karate runRatioMeasures() {
+        return Karate.run("classpath:features/ratio-measures")
+                .parallel(2);
+    }
+}
+src/test/java/com/measure/test/ContinuousVariableTest.java
+
+java
+
+Copy
+package com.measure.test;
+
+import com.intuit.karate.junit5.Karate;
+
+/**
+ * Test Runner for Continuous Variable Measures (9-16)
+ */
+public class ContinuousVariableTest {
+    
+    @Karate.Test
+    Karate runCVMeasures() {
+        return Karate.run("classpath:features/ratio-cv-measures", "classpath:features/cv-measures")
+                .parallel(4);
+    }
+}
+src/test/java/com/measure/test/CohortMeasuresTest.java
+
+java
+
+Copy
+package com.measure.test;
+
+import com.intuit.karate.junit5.Karate;
+
+/**
+ * Test Runner for Cohort Measures (17-20)
+ */
+public class CohortMeasuresTest {
+    
+    @Karate.Test
+    Karate runCohortMeasures() {
+        return Karate.run("classpath:features/cohort-measures")
+                .parallel(2);
+    }
+}
+5. 🔥 CORE: Common Evaluate Measure Feature
+src/test/resources/features/common/evaluate-measure.feature
+
+gherkin
+
+Copy
+@ignore
+Feature: Common Measure Evaluation Function
+
+  # ═══════════════════════════════════════════════════════════════════════
+  # SINGLE REUSABLE FUNCTION TO EVALUATE ANY MEASURE
+  # Usage: call read('classpath:features/common/evaluate-measure.feature') { measureId: 'measure-01' }
+  # ═══════════════════════════════════════════════════════════════════════
+
+  Background:
+    * url fhirServerUrl
+    * configure headers = { 'Content-Type': 'application/fhir+json', 'Accept': 'application/fhir+json' }
+
+  Scenario: Evaluate Measure with POST
+    
+    # Get measure ID from caller
+    * def measureId = __arg.measureId
+    
+    # Build evaluation parameters
+    * def evaluationRequest = 
+      """
+      {
+        "resourceType": "Parameters",
+        "parameter": [
+          {
+            "name": "periodStart",
+            "valueDate": "#(evaluationParams.periodStart)"
+          },
+          {
+            "name": "periodEnd",
+            "valueDate": "#(evaluationParams.periodEnd)"
+          },
+          {
+            "name": "reportType",
+            "valueCode": "#(evaluationParams.reportType)"
+          }
+        ]
+      }
+      """
+    
+    # Log evaluation
+    * if (features.detailedLogging) karate.log('╔══════════════════════════════════════════════════╗')
+    * if (features.detailedLogging) karate.log('║  Evaluating Measure:', measureId)
+    * if (features.detailedLogging) karate.log('║  Period:', evaluationParams.periodStart, 'to', evaluationParams.periodEnd)
+    * if (features.detailedLogging) karate.log('║  Report Type:', evaluationParams.reportType)
+    * if (features.detailedLogging) karate.log('╚══════════════════════════════════════════════════╝')
+    
+    # Call $evaluate-measure
+    Given path 'Measure', measureId, '$evaluate-measure'
+    And request evaluationRequest
+    When method post
+    Then status 200
+    And match response.resourceType == 'MeasureReport'
+    
+    # Extract and log population counts
+    * def group = response.group[0]
+    * def populations = group.population
+    
+    * if (features.detailedLogging) karate.log('\n📊 Population Counts:')
+    * karate.forEach(populations, function(pop) { 
+        var code = pop.code.coding[0].code; 
+        var count = pop.count; 
+        if (features.detailedLogging) karate.log('   •', code + ':', count); 
+      })
+    
+    # Save generated report if enabled
+    * if (features.saveGeneratedReports) karate.write(response, outputPaths.generatedReports + '/' + measureId + '-generated.json')
+    * if (features.saveGeneratedReports && features.detailedLogging) karate.log('💾 Saved generated report:', measureId + '-generated.json')
+    
+    # Return the MeasureReport
+    * def measureReport = response
+6. Compare Reports Feature
+src/test/resources/features/common/compare-reports.feature
+
+gherkin
+
+Copy
+@ignore
+Feature: Compare MeasureReports
+
+  # ═══════════════════════════════════════════════════════════════════════
+  # COMPARE ACTUAL vs EXPECTED MEASUREREPORTS
+  # Usage: call read('classpath:features/common/compare-reports.feature') 
+  #        { actual: actualReport, expected: expectedReport, measureId: 'measure-01' }
+  # ═══════════════════════════════════════════════════════════════════════
+
+  Scenario: Compare Population Counts
+    
+    * def actual = __arg.actual
+    * def expected = __arg.expected
+    * def measureId = __arg.measureId
+    
+    * def actualGroup = actual.group[0]
+    * def expectedGroup = expected.group[0]
+    
+    # Helper function to get population count
+    * def getPopCount = 
+      """
+      function(group, popCode) {
+        var pops = group.population || [];
+        for (var i = 0; i < pops.length; i++) {
+          if (pops[i].code.coding[0].code === popCode) {
+            return pops[i].count;
+          }
+        }
+        return 0;
+      }
+      """
+    
+    # Population types to compare
+    * def populationTypes = [
+        'initial-population',
+        'denominator',
+        'numerator',
+        'denominator-exclusion',
+        'denominator-exception',
+        'numerator-exclusion',
+        'measure-population',
+        'measure-population-exclusion'
+      ]
+    
+    # Perform comparison
+    * def comparisonResults = {}
+    * def allMatch = true
+    
+    * karate.log('\n╔══════════════════════════════════════════════════╗')
+    * karate.log('║  Comparing Populations for', measureId)
+    * karate.log('╚══════════════════════════════════════════════════╝\n')
+    
+    * karate.forEach(populationTypes, function(popType) {
+        var actualCount = getPopCount(actualGroup, popType);
+        var expectedCount = getPopCount(expectedGroup, popType);
+        
+        if (expectedCount > 0 || actualCount > 0) {
+          var match = actualCount === expectedCount;
+          
+          comparisonResults[popType] = {
+            actual: actualCount,
+            expected: expectedCount,
+            match: match
+          };
+          
+          if (match) {
+            karate.log('  ✅', popType + ':', actualCount);
+          } else {
+            karate.log('  ❌', popType + ': Expected', expectedCount + ', Got', actualCount);
+            allMatch = false;
+          }
+        }
+      })
+    
+    # Compare stratifiers if present
+    * if (expectedGroup.stratifier) karate.call('classpath:features/common/compare-reports.feature@compareStratifiers', { actualGroup: actualGroup, expectedGroup: expectedGroup })
+    
+    # Save comparison results
+    * def comparisonSummary = 
+      """
+      {
+        measureId: '#(measureId)',
+        timestamp: '#(karate.info.timestamp)',
+        populations: #(comparisonResults),
+        allMatch: #(allMatch),
+        passed: #(allMatch)
+      }
+      """
+    
+    * if (features.saveComparisonResults) karate.write(comparisonSummary, outputPaths.comparisonResults + '/' + measureId + '-comparison.json')
+    
+    * karate.log('\n' + (allMatch ? '✅ All populations match!' : '❌ Some populations do not match'))
+    * karate.log('══════════════════════════════════════════════════\n')
+    
+    # Return comparison result
+    * def comparisonResult = { populations: comparisonResults, allMatch: allMatch, passed: allMatch }
+
+  @ignore
+  Scenario: Compare Stratifiers
+    
+    * def actualGroup = __arg.actualGroup
+    * def expectedGroup = __arg.expectedGroup
+    
+    * def actualStratifiers = actualGroup.stratifier || []
+    * def expectedStratifiers = expectedGroup.stratifier || []
+    
+    * karate.log('\n📊 Comparing Stratifiers...')
+    
+    * karate.forEach(expectedStratifiers, function(expectedStrat, index) {
+        var actualStrat = actualStratifiers[index];
+        var stratName = expectedStrat.code[0].text || 'Stratifier-' + index;
+        
+        karate.log('  Stratifier:', stratName);
+        
+        var expectedStratum = expectedStrat.stratum || [];
+        var actualStratum = actualStrat.stratum || [];
+        
+        karate.forEach(expectedStratum, function(expStrat, sIndex) {
+          var actStrat = actualStratum[sIndex];
+          var stratValue = expStrat.value.text || 'Value-' + sIndex;
+          
+          var expPops = expStrat.population || [];
+          var actPops = actStrat.population || [];
+          
+          var stratMatch = true;
+          
+          karate.forEach(expPops, function(expPop) {
+            var popCode = expPop.code.coding[0].code;
+            var expCount = expPop.count;
+            
+            var actPop = actPops.find(function(p) { 
+              return p.code.coding[0].code === popCode; 
+            });
+            var actCount = actPop ? actPop.count : 0;
+            
+            if (actCount === expCount) {
+              karate.log('    ✅', stratValue, '-', popCode + ':', actCount);
+            } else {
+              karate.log('    ❌', stratValue, '-', popCode + ': Expected', expCount + ', Got', actCount);
+              stratMatch = false;
+            }
+          });
+        });
+      })
+7. Test Data Loader
+src/test/resources/features/setup/load-test-data.feature
+
+gherkin
+
+Copy
+Feature: Load Test Data Once
+
+  Background:
+    * url fhirServerUrl
+    * configure headers = { 'Content-Type': 'application/fhir+json' }
+
+  @setup
+  Scenario: Load Library, Measures, and Common Data
+    
+    * karate.log('\n╔════════════════════════════════════════════════════════╗')
+    * karate.log('║          LOADING TEST DATA - ONE TIME SETUP           ║')
+    * karate.log('╚════════════════════════════════════════════════════════╝\n')
+    
+    # ════════════════════════════════════════════════════════════════
+    # Step 1: Load CQL Library
+    # ════════════════════════════════════════════════════════════════
+    * karate.log('📚 Loading CQL Library...')
+    * def library = read('classpath:common-data/library/LibrarySimple.json')
+    
+    Given path 'Library', library.id
+    And request library
+    When method put
+    Then status 200, 201
+    
+    * karate.log('✅ Library loaded:', library.id, '\n')
+    
+    # ════════════════════════════════════════════════════════════════
+    # Step 2: Load All Measures
+    # ════════════════════════════════════════════════════════════════
+    * karate.log('📊 Loading Measures...')
+    
+    * def loadMeasure = 
+      """
+      function(measureFile) {
+        var measure = karate.read('classpath:measures/' + measureFile);
+        karate.log('  • Loading:', measure.id);
+        
+        var response = karate.call('classpath:features/common/test-data-loader.feature@uploadResource', 
+          { resourceType: 'Measure', resource: measure });
+        
+        return response;
+      }
+      """
+    
+    * def measureFiles = [
+        'measure-01-proportion-date-basis.json',
+        'measure-02-proportion-boolean.json',
+        'measure-03-proportion-string.json',
+        'measure-04-proportion-resource.json',
+        'measure-05-ratio-boolean.json',
+        'measure-06-ratio-date.json',
+        'measure-07-ratio-string.json',
+        'measure-08-ratio-resource.json',
+        'measure-09-ratio-cv-date.json',
+        'measure-10-ratio-cv-boolean.json',
+        'measure-11-ratio-cv-string.json',
+        'measure-12-ratio-cv-resource.json',
+        'measure-13-cv-date.json',
+        'measure-14-cv-boolean.json',
+        'measure-15-cv-string.json',
+        'measure-16-cv-resource.json',
+        'measure-17-cohort-boolean.json',
+        'measure-18-cohort-boolean-no-start.json',
+        'measure-19-cohort-string.json',
+        'measure-20-cohort-resource.json'
+      ]
+    
+    * def results = karate.map(measureFiles, loadMeasure)
+    * karate.log('✅ Loaded', measureFiles.length, 'measures\n')
+    
+    # ════════════════════════════════════════════════════════════════
+    # Step 3: Load Common Test Data (Bundles)
+    # ════════════════════════════════════════════════════════════════
+    * karate.log('👥 Loading Common Test Data...')
+    
+    * def organizationsBundle = read('classpath:common-data/organizations/organizations-bundle.json')
+    * def practitionersBundle = read('classpath:common-data/practitioners/practitioners-bundle.json')
+    * def patientsBundle = read('classpath:common-data/patients/patients-bundle.json')
+    * def encountersBundle = read('classpath:common-data/encounters/encounters-bundle.json')
+    
+    # Load organizations
+    Given path '/'
+    And request organizationsBundle
+    When method post
+    Then status 200
+    * karate.log('  ✅ Organizations loaded')
+    
+    # Load practitioners
+    Given path '/'
+    And request practitionersBundle
+    When method post
+    Then status 200
+    * karate.log('  ✅ Practitioners loaded')
+    
+    # Load patients
+    Given path '/'
+    And request patientsBundle
+    When method post
+    Then status 200
+    * karate.log('  ✅ Patients loaded')
+    
+    # Load encounters
+    Given path '/'
+    And request encountersBundle
+    When method post
+    Then status 200
+    * karate.log('  ✅ Encounters loaded')
+    
+    * karate.log('\n╔════════════════════════════════════════════════════════╗')
+    * karate.log('║           TEST DATA LOADED SUCCESSFULLY               ║')
+    * karate.log('╚════════════════════════════════════════════════════════╝\n')
+
+  @ignore
+  Scenario: Upload Resource Helper
+    * def resourceType = __arg.resourceType
+    * def resource = __arg.resource
+    
+    Given path resourceType, resource.id
+    And request resource
+    When method put
+    Then status 200, 201
+8. Test Template (Clean & Simple)
+src/test/resources/features/proportion-measures/measure-01.feature
+
+gherkin
+
+Copy
+Feature: Measure 01 - Proportion Date Basis with Stratifiers
+
+  Background:
+    * def measureId = 'measure-01'
+
+  Scenario: Evaluate and Validate Measure 01
+    
+    # Step 1: Evaluate measure (calls common function)
+    * def result = call read('classpath:features/common/evaluate-measure.feature') { measureId: '#(measureId)' }
+    * def actualReport = result.measureReport
+    
+    # Step 2: Load expected report
+    * def expectedReport = read('classpath:expected-results/measure-01-expected.json')
+    
+    # Step 3: Compare reports (calls common function)
+    * def comparison = call read('classpath:features/common/compare-reports.feature') 
+      """
+      {
+        actual: #(actualReport),
+        expected: #(expectedReport),
+        measureId: '#(measureId)'
+      }
+      """
+    
+    # Step 4: Assert all populations match
+    * match comparison.comparisonResult.passed == true
+9. Script to Generate Expected Reports
+scripts/generate-expected-reports.js
+
+javascript
+
+Copy
+#!/usr/bin/env node
+
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
+
+// Configuration
+const FHIR_SERVER = process.env.FHIR_SERVER || 'http://localhost:8080/fhir';
+const OUTPUT_DIR = path.join(__dirname, '..', 'src', 'test', 'resources', 'expected-results');
+
+const MEASURES = [
+  'measure-01', 'measure-02', 'measure-03', 'measure-04',
+  'measure-05', 'measure-06', 'measure-07', 'measure-08',
+  'measure-09', 'measure-10', 'measure-11', 'measure-12',
+  'measure-13', 'measure-14', 'measure-15', 'measure-16',
+  'measure-17', 'measure-18', 'measure-19', 'measure-20'
+];
+
+const EVALUATION_PARAMS = {
+  resourceType: "Parameters",
+  parameter: [
+    { name: "periodStart", valueDate: "2024-01-01" },
+    { name: "periodEnd", valueDate: "2024-12-31" },
+    { name: "reportType", valueCode: "summary" }
+  ]
+};
+
+async function generateExpectedReports() {
+  console.log('═══════════════════════════════════════════════════════════');
+  console.log('  Generating Expected MeasureReports');
+  console.log('═══════════════════════════════════════════════════════════\n');
+  console.log(`FHIR Server: ${FHIR_SERVER}`);
+  console.log(`Output Directory: ${OUTPUT_DIR}\n`);
+  
+  // Create output directory
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  }
+  
+  let success = 0;
+  let failed = 0;
+  
+  for (const measureId of MEASURES) {
+    try {
+      process.stdout.write(`📊 ${measureId}... `);
+      
+      // Call $evaluate-measure
+      const response = await axios.post(
+        `${FHIR_SERVER}/Measure/${measureId}/$evaluate-measure`,
+        EVALUATION_PARAMS,
+        {
+          headers: {
+            'Content-Type': 'application/fhir+json',
+            'Accept': 'application/fhir+json'
+          },
+          timeout: 60000
+        }
+      );
+      
+      // Save report
+      const outputPath = path.join(OUTPUT_DIR, `${measureId}-expected.json`);
+      fs.writeFileSync(outputPath, JSON.stringify(response.data, null, 2));
+      
+      console.log('✅');
+      success++;
+      
+    } catch (error) {
+      console.log(`❌ ${error.message}`);
+      failed++;
+    }
+  }
+  
+  console.log('\n═══════════════════════════════════════════════════════════');
+  console.log(`✅ Success: ${success}`);
+  console.log(`❌ Failed: ${failed}`);
+  console.log('═══════════════════════════════════════════════════════════\n');
+}
+
+generateExpectedReports();
+Make it executable:
+
+bash
+
+Copy
+chmod +x scripts/generate-expected-reports.js
+10. package.json (for utility scripts)
+json
+
+Copy
+{
+  "name": "measure-test-karate",
+  "version": "1.0.0",
+  "description": "Utility scripts for measure testing",
+  "scripts": {
+    "generate-expected": "node scripts/generate-expected-reports.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}
+11. .gitignore
+gitignore
+
+Copy
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+dependency-reduced-pom.xml
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
+*.swp
+
+# Logs
+*.log
+logs/
+karate.log
+
+# Test Output (optional - can track for debugging)
+test-output/generated-reports/*.json
+test-output/comparison-results/*.json
+
+# Keep directory structure
+!test-output/generated-reports/.gitkeep
+!test-output/comparison-results/.gitkeep
+
+# Node
+node_modules/
+package-lock.json
+
+# Temp
+*.tmp
+.temp/
+12. README.md (Complete Documentation)
+markdown
+
+Copy
+# 🥋 CQL Measure Testing Framework with Karate
+
+Automated testing framework for 20 CQL measures using Karate BDD.
+
+## 📋 Overview
+
+- **20 Measures**: 4 Proportion + 4 Ratio + 8 Continuous Variable + 4 Cohort
+- **Common Test Data**: Shared Patient, Organization, Practitioner, Encounter
+- **Single CQL Library**: One library for all measures
+- **Population Reports**: One expected result per measure
+
+## 🏗️ Structure
+measure-test-karate/
+├── src/test/resources/
+│   ├── common-data/           # Shared test data
+│   ├── measures/              # 20 measure definitions
+│   ├── expected-results/      # Expected MeasureReports
+│   └── features/
+│       ├── common/            # Reusable functions
+│       │   ├── evaluate-measure.feature    # ⭐ Single evaluate function
+│       │   └── compare-reports.feature
+│       ├── setup/
+│       └── [measure-type]-measures/
+└── test-output/
+├── generated-reports/     # Actual reports from tests
+└── comparison-results/    # Detailed comparison logs
+
+
+Copy
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Java 11+
+- Maven 3.6+
+- FHIR Server (HAPI FHIR recommended)
+- Node.js (for utility scripts)
+
+### 1. Clone & Setup
+```bash
+git clone <repo-url>
+cd measure-test-karate
+mvn clean install
+npm install
+2. Configure FHIR Server
+Edit src/test/resources/karate-config.js:
+
+javascript
+
+Copy
+fhirServerUrl: 'http://your-server:8080/fhir'
+3. Load Test Data (One Time)
+bash
+
+Copy
+mvn test -Dtest=MeasureTestRunner -Dkarate.options="--tags @setup"
+4. Generate Expected Reports (One Time)
+bash
+
+Copy
+npm run generate-expected
+5. Run Tests
+bash
+
+Copy
+mvn test
+🧪 Running Tests
+bash
+
+Copy
+# Run all tests
+mvn test
+
+# Run specific measure type
+mvn test -Dtest=ProportionMeasuresTest
+mvn test -Dtest=RatioMeasuresTest
+mvn test -Dtest=ContinuousVariableTest
+mvn test -Dtest=CohortMeasuresTest
+
+# Run single measure
+mvn test -Dkarate.options="--tags @measure-01"
+
+# Run with specific environment
+mvn test -Dkarate.env=test
+
+# Run in parallel (faster)
+mvn test -Dtest=MeasureTestRunner
+
+# Generate HTML report
+mvn test
+open target/karate-reports/karate-summary.html
+📊 Test Reports
+After running tests:
+
+HTML Report: target/karate-reports/karate-summary.html
+Generated Reports: test-output/generated-reports/
+Comparison Logs: test-output/comparison-results/
+Detailed Logs: target/karate.log
+🔧 How It Works
+1. Common Evaluate Function
+All tests use the same evaluation function:
+
+gherkin
+
+Copy
+* def result = call read('classpath:features/common/evaluate-measure.feature') 
+  { measureId: 'measure-01' }
+2. Common Comparison Function
+All tests use the same comparison logic:
+
+gherkin
+
+Copy
+* def comparison = call read('classpath:features/common/compare-reports.feature')
+  { actual: actualReport, expected: expectedReport, measureId: 'measure-01' }
+3. Simple Test Template
+Each measure test is just 3 steps:
+
+gherkin
+
+Copy
+Feature: Measure 01
+
+  Scenario: Test Measure 01
+    * def result = call evaluateMeasure
+    * def expected = read('expected-results/measure-01-expected.json')
+    * def comparison = call compareReports
+    * match comparison.passed == true
+📝 Adding New Measures
+Add measure JSON to src/test/resources/measures/
+Create feature file from template
+Generate expected report:
+bash
+
+Copy
+npm run generate-expected
+Run test:
+bash
+
+Copy
+mvn test -Dkarate.options="--tags @measure-21"
+🐛 Troubleshooting
+FHIR Server Connection Issues
+Verify server is running
+Check karate-config.js for correct URL
+Check logs: target/karate.log
+Test Failures
+Check generated vs expected reports in test-output/
+Review comparison logs in test-output/comparison-results/
+Enable detailed logging in karate-config.js
+Data Not Loading
+Ensure setup test runs first: @setup tag
+Verify bundles in common-data/ are valid
+Check FHIR server accepts bundles
+📚 Documentation
+Karate Documentation
+FHIR Measure
+CQL Specification
+👥 Support
+For issues or questions, contact: your-email@example.com
+
+
+Copy
+
+---
+
+## ✅ **SUMMARY OF FINAL STRUCTURE**
+
+### **Key Features:**
+
+1. ✅ **Single Evaluate Function** - One reusable `evaluate-measure.feature`
+2. ✅ **Single Compare Function** - One reusable `compare-reports.feature`
+3. ✅ **Common Test Data** - Loaded once, used by all tests
+4. ✅ **Simple Test Files** - Each measure test is ~10 lines
+5. ✅ **Population Reports** - One expected report per measure
+6. ✅ **Saves Generated Reports** - For debugging/comparison
+7. ✅ **Detailed Logging** - Configurable verbosity
+8. ✅ **Parallel Execution** - Run multiple tests simultaneously
+9. ✅ **HTML Reports** - Beautiful test reports
+10. ✅ **Easy Maintenance** - Just pass `measureId`
+
+---
+
+## 🎯 **Usage Example**
+
+```bash
+# 1. First time setup
+cd measure-test-karate
+mvn clean install
+npm install
+
+# 2. Load test data (one time)
+mvn test -Dtest=MeasureTestRunner -Dkarate.options="--tags @setup"
+
+# 3. Generate expected reports (one time)
+npm run generate-expected
+
+# 4. Run all tests
+mvn test
+
+# 5. View results
+open target/karate-reports/karate-summary.html
+🚀 Ready to implement?
+This is your complete, production-ready structure. Everything is:
+
+✅ Reusable
+✅ Maintainable
+✅ Simple
+✅ Scalable
+Would you like me to proceed with Phase 2: Sample Data Creation & First Working Test? 🎯
+

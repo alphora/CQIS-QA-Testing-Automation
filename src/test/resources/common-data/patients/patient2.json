@@ -1,0 +1,19 @@
+{
+    "resourceType": "Patient",
+    "id": "patient2",
+    "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-01-12T16:37:41.094+00:00",
+        "source": "#SUWxdd0DCHitAk0h"
+    },
+    "gender": "female",
+    "birthDate": "1904-01-01",
+    "generalPractitioner": [
+{
+"reference": "Practitioner/practitioner-1"
+}
+],
+"managingOrganization": {
+"reference": "Organization/practice-group-utah"
+}
+}

@@ -1,0 +1,229 @@
+{
+  "id": "1ProportionDateCompStratSDEMulti",
+  "resourceType": "Measure",
+  "url": "http://example.com/Measure/1ProportionDateCompStratSDEMulti",
+  "name": "1ProportionDateCompStratSDEMulti",
+  "title": "1ProportionDateCompStratSDEMulti",
+  "library": [
+    "http://example.com/Library/LibrarySimple"
+  ],
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis",
+      "valueCode": "date"
+    }
+  ],
+  "scoring": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/measure-scoring",
+        "code": "proportion"
+      }
+    ]
+  },
+  "group": [
+    {
+      "id": "group-1",
+      "population": [
+        {
+          "id": "initial-population",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "ip date"
+          }
+        },
+        {
+          "id": "denominator",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator",
+                "display": "Denominator"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "den date"
+          }
+        },
+        {
+          "id": "denominator-exclusion",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator-exclusion",
+                "display": "Denominator-Exclusion"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "exc date"
+          }
+        },
+        {
+          "id": "denominator-exception",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator-exception",
+                "display": "Denominator-Exception"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Denominator Exception Boolean"
+          }
+        },
+        {
+          "id": "numerator",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator",
+                "display": "Numerator"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "num date"
+          }
+        },
+        {
+          "id": "numerator-exclusion",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator-exclusion",
+                "display": "Numerator-Exclusion"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Numerator Exclusion Boolean"
+          }
+        }
+      ],
+      "stratifier": [
+        {
+          "id": "stratifier-1",
+          "code": {
+            "text": "Age"
+          },
+          "component": [
+            {
+              "id": "stratifier-1-comp-1",
+              "code": {
+                "text": "Age"
+              },
+              "criteria": {
+                "language": "text/cql.identifier",
+                "expression": "Age Stratifier Date"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "group-2",
+      "population": [
+        {
+          "id": "initial-population-2",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "ip date"
+          }
+        },
+        {
+          "id": "denominator-2",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator",
+                "display": "Denominator"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "den date"
+          }
+        },
+        {
+          "id": "denominator-exclusion-2",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator-exclusion",
+                "display": "Denominator-Exclusion"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "exc date"
+          }
+        },
+        {
+          "id": "numerator-2",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator",
+                "display": "Numerator"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "num date"
+          }
+        }
+      ]
+    }
+  ],
+  "supplementalData": [ {
+    "id": "sde-patient-sex",
+    "usage": [ {
+      "coding": [ {
+        "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
+        "code": "supplemental-data"
+      } ]
+    } ],
+    "criteria": {
+      "language": "text/cql.identifier",
+      "expression": "SDE Sex"
+    }
+  } ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "measure-test-karate",
+  "version": "1.0.0",
+  "description": "Utility scripts for measure testing",
+  "scripts": {
+    "generate-expected": "node scripts/generate-expected-result.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}
