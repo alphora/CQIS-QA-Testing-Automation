@@ -1,5 +1,9 @@
 # Maven
 target/
+# But include specific test output folders
+!target/karate-reports/
+!target/test-output/
+!target/test-output/actual-reports/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
