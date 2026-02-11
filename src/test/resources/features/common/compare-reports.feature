@@ -31,26 +31,27 @@ Feature: Compare MeasureReports
       function() {
         for (var i = 0; i < expectedPops.length; i++) {
           var exp = expectedPops[i];
+          var popId = exp.id;
           var popCode = exp.code.coding[0].code;
           var expCount = exp.count;
 
           var act = actualPops.find(function(p) {
-            return p.code.coding[0].code === popCode;
+            return p.id === popId;
           });
           var actCount = act ? act.count : 0;
 
           var match = actCount === expCount;
 
-          comparisonResults[popCode] = {
+          comparisonResults[popId] = {
             actual: actCount,
             expected: expCount,
             match: match
           };
 
           if (match) {
-            karate.log('  ✅ ' + popCode + ': ' + actCount);
+            karate.log('  ✅ ' + popId + ': ' + actCount);
           } else {
-            karate.log('  ❌ ' + popCode + ': Expected ' + expCount + ', Got ' + actCount);
+            karate.log('  ❌ ' + popId + ': Expected ' + expCount + ', Got ' + actCount);
             allMatch = false;
           }
         }
@@ -154,26 +155,27 @@ Feature: Compare MeasureReports
 
             for (var k = 0; k < expPops.length; k++) {
               var expPop = expPops[k];
+              var popId = expPop.id;
               var popCode = expPop.code.coding[0].code;
               var expCount = expPop.count;
 
               var actPop = actPops.find(function(p) {
-                return p.code.coding[0].code === popCode;
+                return p.id === popId;
               });
               var actCount = actPop ? actPop.count : 0;
 
               var match = actCount === expCount;
 
-              stratResults[stratCode].stratum[stratValue][popCode] = {
+              stratResults[stratCode].stratum[stratValue][popId] = {
                 expected: expCount,
                 actual: actCount,
                 match: match
               };
 
               if (match) {
-                karate.log('  ✅ [' + stratValue + '] ' + popCode + ': ' + actCount);
+                karate.log('  ✅ [' + stratValue + '] ' + popId + ': ' + actCount);
               } else {
-                karate.log('  ❌ [' + stratValue + '] ' + popCode + ': Expected ' + expCount + ', Got ' + actCount);
+                karate.log('  ❌ [' + stratValue + '] ' + popId + ': Expected ' + expCount + ', Got ' + actCount);
                 allStratMatch = false;
               }
             }

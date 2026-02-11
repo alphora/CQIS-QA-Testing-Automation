@@ -1,0 +1,115 @@
+{
+    "resourceType": "Parameters",
+    "parameter": [
+        {
+            "name": "return",
+            "resource": {
+                "resourceType": "Bundle",
+                "id": "cbc06c8d-023c-46ec-aaa4-4bd54b873eb3",
+                "identifier": {
+                    "system": "urn:ietf:rfc:3986",
+                    "value": "urn:uuid:07daceb9-fe6d-4b8e-9aa7-5a669df822fb"
+                },
+                "type": "searchset",
+                "timestamp": "2026-02-11T14:57:01.189-05:00",
+                "entry": [
+                    {
+                        "fullUrl": "http://localhost:8000/MeasureReport/c63343cd-f421-4eec-900c-1e94c33f3a1d",
+                        "resource": {
+                            "resourceType": "MeasureReport",
+                            "id": "c63343cd-f421-4eec-900c-1e94c33f3a1d",
+                            "status": "complete",
+                            "type": "summary",
+                            "measure": "http://example.com/Measure/8RatioResourceNoStrat|1.0.0",
+                            "date": "2026-02-11T14:57:01-05:00",
+                            "period": {
+                                "start": "2023-12-31T19:00:00-05:00",
+                                "end": "2024-12-31T18:59:59-05:00"
+                            },
+                            "improvementNotation": {
+                                "coding": [
+                                    {
+                                        "system": "http://terminology.hl7.org/CodeSystem/measure-improvement-notation",
+                                        "code": "increase"
+                                    }
+                                ]
+                            },
+                            "group": [
+                                {
+                                    "id": "group-1",
+                                    "population": [
+                                        {
+                                            "id": "initial-population",
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                                        "code": "initial-population"
+                                                    }
+                                                ]
+                                            },
+                                            "count": 4
+                                        },
+                                        {
+                                            "id": "denominator",
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                                        "code": "denominator"
+                                                    }
+                                                ]
+                                            },
+                                            "count": 4
+                                        },
+                                        {
+                                            "id": "denominator-exclusion",
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                                        "code": "denominator-exclusion"
+                                                    }
+                                                ]
+                                            },
+                                            "count": 1
+                                        },
+                                        {
+                                            "id": "numerator-exclusion",
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                                        "code": "numerator-exclusion",
+                                                        "display": "Numerator-Exclusion"
+                                                    }
+                                                ]
+                                            },
+                                            "count": 0
+                                        },
+                                        {
+                                            "id": "numerator",
+                                            "code": {
+                                                "coding": [
+                                                    {
+                                                        "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                                        "code": "numerator",
+                                                        "display": "Numerator"
+                                                    }
+                                                ]
+                                            },
+                                            "count": 1
+                                        }
+                                    ],
+                                    "measureScore": {
+                                        "value": 0.3333333333333333
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
