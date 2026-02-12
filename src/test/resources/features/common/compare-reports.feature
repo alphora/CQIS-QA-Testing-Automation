@@ -139,12 +139,36 @@ Feature: Compare MeasureReports
 
           for (var j = 0; j < expStratum.length; j++) {
             var expStrum = expStratum[j];
-            var stratValue = expStrum.value ? expStrum.value.text : 'Stratum-' + j;
 
-            // Find matching stratum by value text instead of by index
-            var actStrum = actStratum.find(function(s) {
-              return s.value && s.value.text === stratValue;
-            });
+            // Check if this is a multi-component stratum
+            var isMultiComponent = expStrum.component && expStrum.component.length > 0;
+            var stratValue;
+            var actStrum;
+
+            if (isMultiComponent) {
+              // For multi-component, create a sorted key from all component values
+              var expComponentValues = expStrum.component.map(function(c) {
+                return c.value && c.value.text ? c.value.text : '';
+              }).sort().join('|');
+
+              stratValue = expComponentValues || 'Stratum-' + j;
+
+              // Find matching stratum by comparing sorted component values
+              actStrum = actStratum.find(function(s) {
+                if (!s.component || s.component.length === 0) return false;
+                var actComponentValues = s.component.map(function(c) {
+                  return c.value && c.value.text ? c.value.text : '';
+                }).sort().join('|');
+                return actComponentValues === expComponentValues;
+              });
+            } else {
+              // For single-value stratum, match by value text
+              stratValue = expStrum.value ? expStrum.value.text : 'Stratum-' + j;
+
+              actStrum = actStratum.find(function(s) {
+                return s.value && s.value.text === stratValue;
+              });
+            }
 
             if (!actStrum) {
               karate.log('  ❌ Stratum [' + stratValue + '] missing in actual report');
