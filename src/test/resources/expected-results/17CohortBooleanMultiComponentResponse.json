@@ -1,1 +1,172 @@
-{"resourceType":"MeasureReport","id":"2950b7d7-a816-4c5c-aaa8-b49f85c2e1f3","contained":[{"resourceType":"Observation","id":"9d0f7793-ce2e-4ab9-9b4f-ddc54f5921b1","extension":[{"url":"http:\/\/hl7.org\/fhir\/StructureDefinition\/cqf-measureInfo","extension":[{"url":"measure","valueCanonical":"http:\/\/example.com\/Measure\/17CohortBooleanMultiComponent"}]}],"status":"final","code":{"coding":[{"code":"F"}]},"valueInteger":2}],"extension":[{"url":"http:\/\/hl7.org\/fhir\/5.0\/StructureDefinition\/extension-MeasureReport.supplementalDataElement.reference","valueReference":{"extension":[{"url":"http:\/\/hl7.org\/fhir\/us\/davinci-deqm\/StructureDefinition\/extension-criteriaReference","valueString":"sde-patient-sex"}],"reference":"#9d0f7793-ce2e-4ab9-9b4f-ddc54f5921b1"}}],"status":"complete","type":"summary","measure":"http:\/\/example.com\/Measure\/17CohortBooleanMultiComponent","date":"2026-02-12T09:44:15-05:00","period":{"start":"2023-12-31T19:00:00-05:00","end":"2024-12-31T18:59:59-05:00"},"group":[{"id":"group-1","population":[{"id":"initial-population-1","code":{"coding":[{"system":"http:\/\/terminology.hl7.org\/CodeSystem\/measure-population","code":"initial-population","display":"Initial Population"}]},"count":2}],"stratifier":[{"id":"stratifier-1","code":[{"text":"Gender and Age"}],"stratum":[{"component":[{"value":{"text":"120"}},{"value":{"text":"true"}}],"population":[{"id":"initial-population-1","code":{"coding":[{"system":"http:\/\/terminology.hl7.org\/CodeSystem\/measure-population","code":"initial-population","display":"Initial Population"}]},"count":2}]}]}]},{"id":"group-2","population":[{"id":"initial-population-2","code":{"coding":[{"system":"http:\/\/terminology.hl7.org\/CodeSystem\/measure-population","code":"initial-population","display":"Initial Population"}]},"count":2}],"stratifier":[{"id":"stratifier-2","code":[{"text":"Gender and Age"}],"stratum":[{"component":[{"value":{"text":"120"}},{"value":{"text":"female"}}],"population":[{"id":"initial-population-2","code":{"coding":[{"system":"http:\/\/terminology.hl7.org\/CodeSystem\/measure-population","code":"initial-population","display":"Initial Population"}]},"count":2}]}]}]}]}
+{
+    "resourceType": "MeasureReport",
+    "id": "2950b7d7-a816-4c5c-aaa8-b49f85c2e1f3",
+    "contained": [
+        {
+            "resourceType": "Observation",
+            "id": "9d0f7793-ce2e-4ab9-9b4f-ddc54f5921b1",
+            "extension": [
+                {
+                    "url": "http:\/\/hl7.org\/fhir\/StructureDefinition\/cqf-measureInfo",
+                    "extension": [
+                        {
+                            "url": "measure",
+                            "valueCanonical": "http:\/\/example.com\/Measure\/17CohortBooleanMultiComponent"
+                        }
+                    ]
+                }
+            ],
+            "status": "final",
+            "code": {
+                "coding": [
+                    {
+                        "code": "F"
+                    }
+                ]
+            },
+            "valueInteger": 2
+        }
+    ],
+    "extension": [
+        {
+            "url": "http:\/\/hl7.org\/fhir\/5.0\/StructureDefinition\/extension-MeasureReport.supplementalDataElement.reference",
+            "valueReference": {
+                "extension": [
+                    {
+                        "url": "http:\/\/hl7.org\/fhir\/us\/davinci-deqm\/StructureDefinition\/extension-criteriaReference",
+                        "valueString": "sde-patient-sex"
+                    }
+                ],
+                "reference": "#9d0f7793-ce2e-4ab9-9b4f-ddc54f5921b1"
+            }
+        }
+    ],
+    "status": "complete",
+    "type": "summary",
+    "measure": "http:\/\/example.com\/Measure\/17CohortBooleanMultiComponent",
+    "date": "2026-02-12T09:44:15-05:00",
+    "period": {
+        "start": "2023-12-31T19:00:00-05:00",
+        "end": "2024-12-31T18:59:59-05:00"
+    },
+    "group": [
+        {
+            "id": "group-1",
+            "population": [
+                {
+                    "id": "initial-population-1",
+                    "code": {
+                        "coding": [
+                            {
+                                "system": "http:\/\/terminology.hl7.org\/CodeSystem\/measure-population",
+                                "code": "initial-population",
+                                "display": "Initial Population"
+                            }
+                        ]
+                    },
+                    "count": 2
+                }
+            ],
+            "stratifier": [
+                {
+                    "id": "stratifier-1",
+                    "code": [
+                        {
+                            "text": "Gender and Age"
+                        }
+                    ],
+                    "stratum": [
+                        {
+                            "component": [
+                                {
+                                    "value": {
+                                        "text": "120"
+                                    }
+                                },
+                                {
+                                    "value": {
+                                        "text": "true"
+                                    }
+                                }
+                            ],
+                            "population": [
+                                {
+                                    "id": "initial-population-1",
+                                    "code": {
+                                        "coding": [
+                                            {
+                                                "system": "http:\/\/terminology.hl7.org\/CodeSystem\/measure-population",
+                                                "code": "initial-population",
+                                                "display": "Initial Population"
+                                            }
+                                        ]
+                                    },
+                                    "count": 2
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "group-2",
+            "population": [
+                {
+                    "id": "initial-population-2",
+                    "code": {
+                        "coding": [
+                            {
+                                "system": "http:\/\/terminology.hl7.org\/CodeSystem\/measure-population",
+                                "code": "initial-population",
+                                "display": "Initial Population"
+                            }
+                        ]
+                    },
+                    "count": 2
+                }
+            ],
+            "stratifier": [
+                {
+                    "id": "stratifier-2",
+                    "code": [
+                        {
+                            "text": "Gender and Age"
+                        }
+                    ],
+                    "stratum": [
+                        {
+                            "component": [
+                                {
+                                    "value": {
+                                        "text": "120"
+                                    }
+                                },
+                                {
+                                    "value": {
+                                        "text": "female"
+                                    }
+                                }
+                            ],
+                            "population": [
+                                {
+                                    "id": "initial-population-2",
+                                    "code": {
+                                        "coding": [
+                                            {
+                                                "system": "http:\/\/terminology.hl7.org\/CodeSystem\/measure-population",
+                                                "code": "initial-population",
+                                                "display": "Initial Population"
+                                            }
+                                        ]
+                                    },
+                                    "count": 2
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
