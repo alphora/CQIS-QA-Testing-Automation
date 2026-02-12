@@ -18,6 +18,11 @@ buildNumber.properties
 karate.log
 *.log
 
+# Ignore generated Karate reports
+target/karate-reports/*.html
+target/karate-reports/*.txt
+target/karate-reports/*.json
+
 # Test outputs
 test-output/
 
