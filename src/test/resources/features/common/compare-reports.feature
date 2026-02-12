@@ -139,15 +139,19 @@ Feature: Compare MeasureReports
 
           for (var j = 0; j < expStratum.length; j++) {
             var expStrum = expStratum[j];
-            var actStrum = actStratum[j];
+            var stratValue = expStrum.value ? expStrum.value.text : 'Stratum-' + j;
+
+            // Find matching stratum by value text instead of by index
+            var actStrum = actStratum.find(function(s) {
+              return s.value && s.value.text === stratValue;
+            });
 
             if (!actStrum) {
-              karate.log('  ❌ Stratum ' + j + ' missing');
+              karate.log('  ❌ Stratum [' + stratValue + '] missing in actual report');
               allStratMatch = false;
               continue;
             }
 
-            var stratValue = expStrum.value ? expStrum.value.text : 'Stratum-' + j;
             stratResults[stratCode].stratum[stratValue] = {};
 
             var expPops = expStrum.population || [];
