@@ -125,7 +125,7 @@
                                                                     }
                                                                 ]
                                                             },
-                                                            "count": 1
+                                                            "count": 2
                                                         },
                                                         {
                                                             "id": "denominator",
@@ -137,7 +137,7 @@
                                                                     }
                                                                 ]
                                                             },
-                                                            "count": 1
+                                                            "count": 2
                                                         },
                                                         {
                                                             "id": "denominator-exclusion",
@@ -175,7 +175,7 @@
                                                                     }
                                                                 ]
                                                             },
-                                                            "count": 1
+                                                            "count": 2
                                                         }
                                                     ],
                                                     "measureScore": {

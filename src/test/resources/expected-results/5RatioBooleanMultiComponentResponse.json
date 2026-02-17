@@ -1,10 +1,10 @@
 {
     "resourceType": "MeasureReport",
-    "id": "9baefa03-2f43-486c-bf15-ed7a63347211",
+    "id": "1d21bcab-2df9-4d7f-87a2-9f9fb39dd7f0",
     "status": "complete",
     "type": "summary",
-    "measure": "http://example.com/Measure/15CVStringComponent",
-    "date": "2026-02-12T08:07:21-05:00",
+    "measure": "http://example.com/Measure/5RatioBooleanMultiComponent|1.0.0",
+    "date": "2026-02-13T11:39:56-05:00",
     "period": {
         "start": "2023-12-31T19:00:00-05:00",
         "end": "2024-12-31T18:59:59-05:00"
@@ -24,78 +24,92 @@
                             }
                         ]
                     },
-                    "count": 6
+                    "count": 2
                 },
                 {
-                    "id": "measure-population",
+                    "id": "denominator",
                     "code": {
                         "coding": [
                             {
                                 "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                                "code": "measure-population",
-                                "display": "Measure Population"
+                                "code": "denominator",
+                                "display": "Denominator"
                             }
                         ]
                     },
                     "count": 2
                 },
                 {
-                    "id": "measure-population-exclusion",
+                    "id": "denominator-exclusion",
                     "code": {
                         "coding": [
                             {
                                 "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                                "code": "measure-population-exclusion",
-                                "display": "Measure Population Exclusion"
+                                "code": "denominator-exclusion",
+                                "display": "Denominator-Exclusion"
+                            }
+                        ]
+                    },
+                    "count": 1
+                },
+                {
+                    "id": "numerator-exclusion",
+                    "code": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                "code": "numerator-exclusion",
+                                "display": "Numerator Exclusion"
                             }
                         ]
                     },
                     "count": 0
                 },
                 {
-                    "id": "measure-observation-1",
-                    "extension": [
-                        {
-                            "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-criteriaReference",
-                            "valueString": "measure-population"
-                        },
-                        {
-                            "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-aggregateMethod",
-                            "valueString": "avg"
-                        },
-                        {
-                            "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/extension-aggregationMethodResult",
-                            "valueDecimal": 100.0
-                        }
-                    ],
+                    "id": "numerator",
                     "code": {
                         "coding": [
                             {
                                 "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                                "code": "measure-observation",
-                                "display": "Measure Observation"
+                                "code": "numerator",
+                                "display": "Numerator"
                             }
                         ]
                     },
-                    "count": 2
+                    "count": 0
                 }
             ],
             "measureScore": {
-                "value": 100.0
+                "value": 0.0
             },
             "stratifier": [
                 {
                     "id": "stratifier-1",
                     "code": [
                         {
-                            "text": "Gender and Age"
+                            "text": "Age"
                         }
                     ],
                     "stratum": [
                         {
-                            "value": {
-                                "text": "female"
-                            },
+                            "component": [
+                                {
+                                    "code": {
+                                        "text": "Age"
+                                    },
+                                    "value": {
+                                        "text": "female"
+                                    }
+                                },
+                                {
+                                    "code": {
+                                        "text": "Age Group"
+                                    },
+                                    "value": {
+                                        "text": "120"
+                                    }
+                                }
+                            ],
                             "population": [
                                 {
                                     "id": "initial-population",
@@ -108,46 +122,59 @@
                                             }
                                         ]
                                     },
-                                    "count": 6
+                                    "count": 2
                                 },
                                 {
-                                    "id": "measure-population",
+                                    "id": "denominator",
                                     "code": {
                                         "coding": [
                                             {
                                                 "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                                                "code": "measure-population",
-                                                "display": "Measure Population"
+                                                "code": "denominator",
+                                                "display": "Denominator"
                                             }
                                         ]
                                     },
                                     "count": 2
                                 },
                                 {
-                                    "id": "measure-population-exclusion",
+                                    "id": "denominator-exclusion",
                                     "code": {
                                         "coding": [
                                             {
                                                 "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                                                "code": "measure-population-exclusion",
-                                                "display": "Measure Population Exclusion"
+                                                "code": "denominator-exclusion",
+                                                "display": "Denominator-Exclusion"
+                                            }
+                                        ]
+                                    },
+                                    "count": 1
+                                },
+                                {
+                                    "id": "numerator-exclusion",
+                                    "code": {
+                                        "coding": [
+                                            {
+                                                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                                "code": "numerator-exclusion",
+                                                "display": "Numerator Exclusion"
                                             }
                                         ]
                                     },
                                     "count": 0
                                 },
                                 {
-                                    "id": "measure-observation-1",
+                                    "id": "numerator",
                                     "code": {
                                         "coding": [
                                             {
                                                 "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                                                "code": "measure-observation",
-                                                "display": "Measure Observation"
+                                                "code": "numerator",
+                                                "display": "Numerator"
                                             }
                                         ]
                                     },
-                                    "count": 2
+                                    "count": 0
                                 }
                             ]
                         }

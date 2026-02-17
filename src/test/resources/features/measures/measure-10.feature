@@ -1,9 +1,9 @@
-Feature: Measure 12 - Ratio CV Resource No Stratifiers
+Feature: Measure 10 - Ratio CV Boolean Multi-Component
 
   Background:
-    * def measureId = '12RatioCVResourceNoStrat'
+    * def measureId = '10RatioCVBooleanMultiComponent'
 
-  Scenario: Evaluate and Validate Measure 12
+  Scenario: Evaluate and Validate Measure 10
 
     # Step 1: Evaluate measure (calls common function)
     * def result = call read('classpath:features/common/evaluate-measure.feature') { measureId: '#(measureId)' }
@@ -17,8 +17,12 @@ Feature: Measure 12 - Ratio CV Resource No Stratifiers
     * karate.log('💾 Actual report saved to:', actualReportFile)
 
     # Step 2: Load expected report
-    * def expectedReport = read('classpath:expected-results/12RatioCVResourceNoStratResponse.json')
-    * karate.log('expectedReport:', expectedReport)
+    * def expectedReportRaw = read('classpath:expected-results/10RatioCVBooleanMultiComponentResponse.json')
+    * karate.log('expectedReportRaw:', expectedReportRaw)
+
+    # Extract MeasureReport from Bundle structure if needed
+    * def expectedReport = expectedReportRaw.resourceType == 'Bundle' ? expectedReportRaw.entry[0].resource : expectedReportRaw
+    * karate.log('Extracted expectedReport:', expectedReport)
 
     # Verify reports have groups
     * match actualReport.group == '#present'
@@ -54,6 +58,42 @@ Feature: Measure 12 - Ratio CV Resource No Stratifiers
       }
       """
     * eval printPopulations()
+
+    # Print stratifier results if present
+    * def stratifiers = comparison.comparisonResult.stratifiers
+    * def hasStratifiers = Object.keys(stratifiers).length > 0
+    * def printStratifiers =
+      """
+      function() {
+        if (!hasStratifiers) return;
+
+        print('');
+        print('STRATIFIERS:');
+        var stratKeys = Object.keys(stratifiers);
+        for (var i = 0; i < stratKeys.length; i++) {
+          var stratCode = stratKeys[i];
+          var strat = stratifiers[stratCode];
+          print('  Stratifier: ' + stratCode);
+
+          var stratumKeys = Object.keys(strat.stratum);
+          for (var j = 0; j < stratumKeys.length; j++) {
+            var stratumValue = stratumKeys[j];
+            var stratum = strat.stratum[stratumValue];
+            print('    [' + stratumValue + ']');
+
+            var popKeys = Object.keys(stratum);
+            for (var k = 0; k < popKeys.length; k++) {
+              var popCode = popKeys[k];
+              var pop = stratum[popCode];
+              var icon = pop.match ? '✅' : '❌';
+              var msg = '      ' + icon + ' ' + popCode + ': Expected=' + pop.expected + ', Actual=' + pop.actual;
+              print(msg);
+            }
+          }
+        }
+      }
+      """
+    * eval printStratifiers()
 
     # Print overall result
     * print ''
