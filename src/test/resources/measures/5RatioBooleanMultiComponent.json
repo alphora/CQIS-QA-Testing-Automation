@@ -1,147 +1,146 @@
 {
-    "resourceType": "Measure",
-    "id": "5RatioBooleanMultiComponent",
-    "url": "http://example.com/Measure/5RatioBooleanMultiComponent",
-    "name": "5RatioBooleanMultiComponent",
-    "title": "5RatioBooleanMultiComponent",
+  "id": "5RatioBooleanMultiComponent",
+  "resourceType": "Measure",
+  "url": "http://example.com/Measure/5RatioBooleanMultiComponent",
     "version": "1.0.0",
-    "status": "draft",
-    "experimental": true,
-    "publisher": "Smile CDR Test Data Generation",
-    "extension": [
+  "status": "draft",
+  "experimental": true,
+  "publisher": "Smile CDR Test Data Generation",
+  "library": [
+    "http://example.com/Library/LibrarySimple"
+  ],
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis",
+      "valueCode": "boolean"
+    }
+  ],
+   "effectivePeriod": {
+    "start": "2024-01-01",
+    "end": "2024-12-31"
+  },
+  "scoring": {
+    "coding": [
       {
-        "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis",
-        "valueCode": "boolean"
+        "system": "http://hl7.org/fhir/measure-scoring",
+        "code": "ratio"
       }
-    ],
-    "effectivePeriod": {
-      "start": "2024-01-01",
-      "end": "2024-12-31"
-    },
-    "library": [
-      "http://example.com/Library/LibrarySimple"
-    ],
-    "scoring": {
-      "coding": [
+    ]
+  },
+  "group": [
+    {
+      "id": "group-1",
+      "population": [
         {
-          "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
-          "code": "ratio",
-          "display": "Ratio"
-        }
-      ]
-    },
-    "improvementNotation": {
-      "coding": [
-        {
-          "system": "http://terminology.hl7.org/CodeSystem/measure-improvement-notation",
-          "code": "increase"
-        }
-      ]
-    },
-    "group": [
-      {
-        "id": "group-1",
-        "population": [
-          {
-            "id": "initial-population",
-            "code": {
-              "coding": [
-                {
-                  "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                  "code": "initial-population"
-                }
-              ]
-            },
-            "criteria": {
-              "language": "text/cql.identifier",
-              "expression": "Initial Population Boolean "
-            }
-          },
-          {
-            "id": "denominator",
-            "code": {
-              "coding": [
-                {
-                  "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                  "code": "denominator"
-                }
-              ]
-            },
-            "criteria": {
-              "language": "text/cql.identifier",
-              "expression": "Denominator Boolean"
-            }
-          },
-          {
-            "id": "denominator-exclusion",
-            "code": {
-              "coding": [
-                {
-                  "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                  "code": "denominator-exclusion"
-                }
-              ]
-            },
-            "criteria": {
-              "language": "text/cql.identifier",
-              "expression": "Denominator Exclusion Boolean"
-            }
-          },
-          {
-            "id": "numerator-exclusion",
-            "code": {
-              "coding": [
-                {
-                  "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                  "code": "numerator-exclusion",
-                  "display": "Numerator-Exclusion"
-                }
-              ]
-            },
-            "criteria": {
-              "language": "text/cql-identifier",
-              "expression": "Numerator Exclusion Boolean"
-            }
-          },
-          {
-            "id": "numerator",
-            "code": {
-              "coding": [
-                {
-                  "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                  "code": "numerator",
-                  "display": "Numerator"
-                }
-              ]
-            },
-            "criteria": {
-              "language": "text/cql-identifier",
-              "expression": "Numerator Boolean"
-            }
-          }
-        ]
-      
-        ,
-        "stratifier": [
-          {
-            "id": "stratifier-1",
-            "code": {
-              "text": "Age and Gender Stratification"
-            },
-            "component": [
+          "id": "initial-population",
+          "code": {
+            "coding": [
               {
-                  "id" : "gender-1",
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "initial-population",
+                "display": "Initial Population"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Initial Population Boolean"
+          }
+        },
+        {
+          "id": "denominator",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator",
+                "display": "Denominator"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Denominator Boolean"
+          }
+        },
+        {
+          "id": "denominator-exclusion",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "denominator-exclusion",
+                "display": "Denominator-Exclusion"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Denominator Exclusion Boolean"
+          }
+        },
+        {
+          "id": "numerator-exclusion",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator-exclusion",
+                "display": "Numerator Exclusion"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Numerator Exclusion Boolean"
+          }
+        },
+        {
+          "id": "numerator",
+          "code": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                "code": "numerator",
+                "display": "Numerator"
+              }
+            ]
+          },
+          "criteria": {
+            "language": "text/cql-identifier",
+            "expression": "Numerator Boolean"
+          }
+        }
+      ],
+      "stratifier": [
+        {
+          "id": "stratifier-1",
+          "code": {
+            "text": "Age"
+          },
+          "component": [
+            {
+              "id": "stratifier-1-comp-1",
+              "code": {
+                "text": "Age"
+              },
+              "criteria": {
+                "language": "text/cql.identifier",
+                "expression": "Gender Stratification"
+              }
+            },
+                          {
+                  "id" : "age-1",
                 "code": {
-                  "text": "Gender"
+                  "text": "Age Group"
                 },
                 "criteria": {
                   "language": "text/cql",
-                  "expression": "Gender Stratification Boolean"
+                  "expression": "Age"
                 }
               }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+          ]
+        }
+      ]
+    }]
+}

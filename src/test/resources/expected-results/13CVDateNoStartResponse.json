@@ -1,0 +1,92 @@
+{
+    "resourceType": "MeasureReport",
+    "id": "e02a2334-cc5d-46d9-914f-70a1f6db4929",
+    "meta": {
+        "versionId": "2",
+        "lastUpdated": "2026-01-15T17:52:23.896+00:00"
+    },
+    "extension": [
+        {
+            "url": "http://smilecdr.com/fhir/StructureDefinition/extension-MeasureReport.measureId",
+            "valueString": "13CVDateNoStart"
+        },
+        {
+            "url": "http://smilecdr.com/fhir/StructureDefinition/extension-MeasureReport.measureTitle",
+            "valueString": "13CVDateNoStart"
+        },
+        {
+            "url": "http://smilecdr.com/fhir/StructureDefinition/extension-MeasureReport.jobId",
+            "valueString": "34808e1d-86e2-4f5f-9298-d1a3eb583614"
+        }
+    ],
+    "status": "complete",
+    "type": "summary",
+    "measure": "http://example.com/Measure/13CVDateNoStart",
+    "date": "2026-01-15T17:51:25+00:00",
+    "reporter": {
+        "reference": "Organization/practice-group-utah"
+    },
+    "period": {
+        "start": "2024-01-11T00:00:00+00:00",
+        "end": "2024-12-31T23:59:59+00:00"
+    },
+    "group": [
+        {
+            "id": "group-1",
+            "population": [
+                {
+                    "id": "initial-population",
+                    "code": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                "code": "initial-population",
+                                "display": "Initial Population"
+                            }
+                        ]
+                    },
+                    "count": 10
+                },
+                {
+                    "id": "measure-population",
+                    "code": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                "code": "measure-population",
+                                "display": "Measure Population"
+                            }
+                        ]
+                    },
+                    "count": 2
+                },
+                {
+                    "id": "measure-population-exclusion",
+                    "code": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                "code": "measure-population-exclusion",
+                                "display": "Measure Population Exclusion"
+                            }
+                        ]
+                    },
+                    "count": 2
+                },
+                {
+                    "id": "measure-observation-1",
+                    "code": {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+                                "code": "measure-observation",
+                                "display": "Measure Observation"
+                            }
+                        ]
+                    },
+                    "count": 0
+                }
+            ]
+        }
+    ]
+}

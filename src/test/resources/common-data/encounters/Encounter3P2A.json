@@ -1,12 +1,12 @@
 {
     "resourceType": "Encounter",
-    "id": "Encounter3P2IP",
+    "id": "Encounter3P2A",
     "meta": {
         "versionId": "1",
         "lastUpdated": "2026-01-26T17:27:20.516+00:00",
         "source": "#CTv448Oe6e5ZcZ4C"
     },
-    "status": "in-progress",
+    "status": "arrived",
     "subject": {
         "reference": "Patient/patient2"
     },

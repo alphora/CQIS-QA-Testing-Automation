@@ -29,7 +29,7 @@ Feature: Load Test Data Once - Simple
     * karate.log('📊 Loading Measures...')
 
     # Define all measure files to load (add more filenames here as needed)
-    * def measureFiles = ['1ProportionDateCompStratSDEMulti.json','2ProportionBooleanComponentStratSDEMulti.json','3ProportionStringCriteria.json','4ProportionResourceNoStart.json','5RatioBooleanMultiComponent.json','6RatioDateBasisComponent.json']
+    * def measureFiles = ['1ProportionDateCompStratSDEMulti.json','2ProportionBooleanComponentStratSDEMulti.json','3ProportionStringCriteria.json','4ProportionResourceNoStart.json','5RatioBooleanMultiComponent.json','6RatioDateBasisComponent.json','10.json','12RatioCVResourceNoStrat.json']
 
     # Load each measure
     * def loadMeasure =
