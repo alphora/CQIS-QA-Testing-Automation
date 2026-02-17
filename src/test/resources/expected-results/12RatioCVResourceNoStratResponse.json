@@ -1,10 +1,10 @@
 {
     "resourceType": "MeasureReport",
-    "id": "801203a9-a1b8-44ab-847b-5157d724db44",
+    "id": "24d1fbb0-7770-4501-8be4-b80d57e45511",
     "status": "complete",
     "type": "summary",
     "measure": "http://example.com/Measure/12RatioCVResourceNoStrat",
-    "date": "2026-02-17T09:36:26-05:00",
+    "date": "2026-02-17T12:35:23-05:00",
     "period": {
         "start": "2023-12-31T19:00:00-05:00",
         "end": "2024-12-31T18:59:59-05:00"
@@ -23,7 +23,7 @@
                             }
                         ]
                     },
-                    "count": 7
+                    "count": 4
                 },
                 {
                     "id": "denominator",
@@ -35,7 +35,7 @@
                             }
                         ]
                     },
-                    "count": 7
+                    "count": 4
                 },
                 {
                     "id": "denominator-exclusion",
@@ -47,7 +47,7 @@
                             }
                         ]
                     },
-                    "count": 0
+                    "count": 1
                 },
                 {
                     "id": "numerator-exclusion",
@@ -73,7 +73,7 @@
                             }
                         ]
                     },
-                    "count": 2
+                    "count": 1
                 },
                 {
                     "id": "observation-num",
@@ -88,7 +88,7 @@
                         },
                         {
                             "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/extension-aggregationMethodResult",
-                            "valueDecimal": 131210.0
+                            "valueDecimal": 30.0
                         }
                     ],
                     "code": {
@@ -100,7 +100,7 @@
                             }
                         ]
                     },
-                    "count": 2
+                    "count": 1
                 },
                 {
                     "id": "observation-den",
@@ -115,7 +115,7 @@
                         },
                         {
                             "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/extension-aggregationMethodResult",
-                            "valueDecimal": 3773747.0
+                            "valueDecimal": 60.0
                         }
                     ],
                     "code": {
@@ -127,11 +127,11 @@
                             }
                         ]
                     },
-                    "count": 7
+                    "count": 2
                 }
             ],
             "measureScore": {
-                "value": 0.034769156490882934
+                "value": 0.5
             }
         }
     ]
