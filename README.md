@@ -22,7 +22,7 @@ measure-tests/
 │   ├── java/com/measure/test/     # Test runners
 │   │   ├── DataSetupTest.java     # One-time data setup
 │   │   ├── ReloadLibraryTest.java # Library reload utility
-│   │   └── ProportionMeasuresTest.java # Measure execution
+│   │   └── AllMeasuresTestRun.java # Measure execution
 │   └── resources/
 │       ├── features/
 │       │   ├── setup/             # Data loading features
@@ -76,13 +76,13 @@ Reloads the CQL library from `src/test/resources/cql/LibrarySimple.cql`
 ### 3. Run All Measures
 
 ```bash
-mvn test -Dtest=ProportionMeasuresTest
+mvn test -Dtest=AllMeasuresTestRun
 ```
 
 ### 4. Run Specific Measures
 
 ```bash
-mvn test -Dtest=ProportionMeasuresTest -Dkarate.options="classpath:features/measures/measure-01.feature classpath:features/measures/measure-03.feature"
+mvn test -Dtest=AllMeasuresTestRun -Dkarate.options="classpath:features/measures/measure-01.feature classpath:features/measures/measure-03.feature"
 ```
 
 ## Test Measures

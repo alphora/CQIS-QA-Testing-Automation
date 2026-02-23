@@ -33,7 +33,7 @@ This will:
 After reloading the library, run your measure tests:
 
 ```bash
-mvn test -Dtest=ProportionMeasuresTest
+mvn test -Dtest=AllMeasuresTestRun
 ```
 
 ## Benefits

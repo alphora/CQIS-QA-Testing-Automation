@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Test Runner for All Measures
  */
-public class ProportionMeasuresTest {
+public class AllMeasuresTestRun {
 
     @Test
     void runMeasures() {
